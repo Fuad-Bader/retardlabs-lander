@@ -1,5 +1,6 @@
 // src/components/Contact.js
 import React, { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,25 +27,31 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      // Using JSONPlaceholder as a placeholder API endpoint
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title: formData.subject,
-            body: `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nMessage: ${formData.message}`,
-            userId: 1,
-          }),
-        }
+      // EmailJS configuration - Replace with your actual values
+      const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'your_service_id';
+      const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'your_template_id';
+      const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'your_public_key';
+
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        company: formData.company,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'your-email@example.com', // Replace with your email
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
       );
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Form submitted successfully:", result);
+      if (response.status === 200) {
+        console.log('Email sent successfully:', response);
         setSubmitStatus("success");
         // Reset form
         setFormData({
@@ -55,10 +62,10 @@ const Contact = () => {
           message: "",
         });
       } else {
-        throw new Error("Failed to submit form");
+        throw new Error("Failed to send email");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error sending email:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
