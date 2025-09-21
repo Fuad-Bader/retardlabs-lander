@@ -1,7 +1,17 @@
 // src/components/Products.js
-import React from "react";
+import React, { useState } from "react";
 
 const Products = () => {
+  const [showBetaModal, setShowBetaModal] = useState(false);
+
+  const handleJoinBeta = () => {
+    setShowBetaModal(true);
+  };
+
+  const closeBetaModal = () => {
+    setShowBetaModal(false);
+  };
+
   const products = [
     {
       name: "Retard Cloud",
@@ -364,6 +374,9 @@ const Products = () => {
                     </a>
                   ) : (
                     <button
+                      onClick={
+                        product.status === "Beta" ? handleJoinBeta : undefined
+                      }
                       className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                         product.status === "Available"
                           ? "bg-blue-600 hover:bg-blue-700 text-white"
@@ -437,6 +450,55 @@ const Products = () => {
           </div>
         </div>
       </div>
+
+      {/* Beta Modal */}
+      {showBetaModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4 relative">
+            {/* Close button */}
+            <button
+              onClick={closeBetaModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
+            {/* Modal content */}
+            <div className="text-center">
+              <div className="mb-4">
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                  <span className="text-4xl">😉</span>
+                </div>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Great things are coming your way!
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Thanks for your interest in our beta program. We'll keep you
+                updated on all the exciting features we're working on.
+              </p>
+              <button
+                onClick={closeBetaModal}
+                className="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200"
+              >
+                Awesome!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

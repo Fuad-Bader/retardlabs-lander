@@ -117,11 +117,11 @@ const Contact = () => {
                       Address
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-                      123 Innovation Drive
+                      Skibidi Toilet St.
                       <br />
-                      Tech Valley, CA 94000
+                      Rizz Land Park
                       <br />
-                      United States
+                      Jordan
                     </p>
                   </div>
                 </div>
@@ -147,7 +147,7 @@ const Contact = () => {
                       Phone
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-                      +1 (555) 123-4567
+                      +962 (777) و الباقي عاللايف
                     </p>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ const Contact = () => {
                       Email
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-                      contact@roko.dev
+                      contact@retardlabs.com
                     </p>
                   </div>
                 </div>
@@ -199,9 +199,9 @@ const Contact = () => {
                       Business Hours
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-                      Monday - Friday: 9:00 AM - 6:00 PM PST
+                      Sunday - Thursday: 6:00 PM - 10:00 PM UTC+3
                       <br />
-                      Saturday - Sunday: 10:00 AM - 4:00 PM PST
+                      Friday - Saturday: 10:00 AM - 6:00 PM UTC+3
                     </p>
                   </div>
                 </div>
