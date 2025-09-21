@@ -12,9 +12,11 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                Retard Labs&reg;
-              </h1>
+              <img
+                src={isDark ? "/RetardLabs White.png" : "/RetardLabs Black.png"}
+                alt="Retard Labs"
+                className="h-8 w-auto"
+              />
             </div>
           </div>
 

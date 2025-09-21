@@ -187,7 +187,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Retard Labs**
 
-- Website: [retardlabs.comm](https://retardlabs.com)s
+- Website: [retardlabs.com](https://retardlabs.com)
 - Support: Available 24/7
 
 ---
