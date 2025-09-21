@@ -257,249 +257,293 @@ const Products = () => {
   };
 
   return (
-    <section
-      id="products"
-      className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
-            Our Products & Solutions
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
-            Comprehensive technology solutions designed to accelerate your
-            digital transformation. From cloud storage to CI/CD pipelines, we've
-            got your tech stack covered.
-          </p>
-        </div>
+    <>
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
 
-        {/* Products Grid */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {products.map((product, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600"
-            >
-              {/* Product Header */}
-              <div className="p-6 border-b border-gray-200 dark:border-gray-600">
-                <div className="flex items-start justify-between mb-4">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-r ${
-                      getColorClasses(product.color).bg
-                    } rounded-lg flex items-center justify-center text-white`}
-                  >
-                    {product.icon}
-                  </div>
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadge(
-                      product.status
-                    )}`}
-                  >
-                    {product.status}
-                  </span>
-                </div>
+        .animate-scroll {
+          animation: scroll 20s linear infinite;
+        }
 
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
-                  {product.name}
-                </h3>
-                <p
-                  className={`text-sm font-medium ${
-                    getColorClasses(product.color).text
-                  } dark:opacity-80 mb-3`}
-                >
-                  {product.tagline}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
-                  {product.description}
-                </p>
-              </div>
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-              {/* Product Features */}
-              <div className="p-6">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
-                  Key Features:
-                </h4>
-                <div className="grid grid-cols-1 gap-2 mb-6">
-                  {product.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center">
-                      <svg
-                        className="w-4 h-4 text-green-500 mr-3 flex-shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-                        {feature}
-                      </span>
+      <section
+        id="products"
+        className="py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
+              Our Products & Solutions
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto transition-colors duration-300">
+              Comprehensive technology solutions designed to accelerate your
+              digital transformation. From cloud storage to CI/CD pipelines,
+              we've got your tech stack covered.
+            </p>
+          </div>
+
+          {/* Products Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            {products.map((product, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-600"
+              >
+                {/* Product Header */}
+                <div className="p-6 border-b border-gray-200 dark:border-gray-600">
+                  <div className="flex items-start justify-between mb-4">
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-r ${
+                        getColorClasses(product.color).bg
+                      } rounded-lg flex items-center justify-center text-white`}
+                    >
+                      {product.icon}
                     </div>
-                  ))}
-                </div>
-
-                {/* Pricing and CTA */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-lg font-bold text-gray-900 dark:text-white transition-colors duration-300">
-                      {product.pricing}
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusBadge(
+                        product.status
+                      )}`}
+                    >
+                      {product.status}
                     </span>
                   </div>
-                  {product.name === "Retard Cloud" &&
-                  product.status === "Available" ? (
-                    <a
-                      href="https://cloud.retardlabs.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
-                    >
-                      Get Started
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </a>
-                  ) : (
-                    <button
-                      onClick={
-                        product.status === "Beta" ? handleJoinBeta : undefined
-                      }
-                      className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                        product.status === "Available"
-                          ? "bg-blue-600 hover:bg-blue-700 text-white"
-                          : product.status === "Beta"
-                          ? "bg-yellow-600 hover:bg-yellow-700 text-white"
-                          : "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300 cursor-not-allowed"
-                      }`}
-                      disabled={!["Available", "Beta"].includes(product.status)}
-                    >
-                      {product.status === "Available"
-                        ? "Get Started"
-                        : product.status === "Beta"
-                        ? "Join Beta"
-                        : "Coming Soon"}
-                    </button>
-                  )}
+
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 transition-colors duration-300">
+                    {product.name}
+                  </h3>
+                  <p
+                    className={`text-sm font-medium ${
+                      getColorClasses(product.color).text
+                    } dark:opacity-80 mb-3`}
+                  >
+                    {product.tagline}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed transition-colors duration-300">
+                    {product.description}
+                  </p>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        {/* Call to Action */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            Need a Custom Solution?
-          </h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            Can't find exactly what you're looking for? Our team specializes in
-            building custom technology solutions tailored to your specific
-            business requirements.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
-            >
-              Discuss Custom Solutions
-            </a>
-            <a
-              href="#services"
-              className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
-            >
-              View Our Services
-            </a>
-          </div>
-        </div>
+                {/* Product Features */}
+                <div className="p-6">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-4 transition-colors duration-300">
+                    Key Features:
+                  </h4>
+                  <div className="grid grid-cols-1 gap-2 mb-6">
+                    {product.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-center">
+                        <svg
+                          className="w-4 h-4 text-green-500 mr-3 flex-shrink-0"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
-        {/* Technology Stack */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8 transition-colors duration-300">
-            Built with Modern Technologies
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {[
-              { name: "React", color: "text-blue-500" },
-              { name: "Node.js", color: "text-green-500" },
-              { name: "Docker", color: "text-blue-600" },
-              { name: "Kubernetes", color: "text-purple-500" },
-              { name: "AWS", color: "text-orange-500" },
-              { name: "TypeScript", color: "text-blue-600" },
-            ].map((tech, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300">
-                  <span className={`text-lg font-semibold ${tech.color}`}>
-                    {tech.name}
-                  </span>
+                  {/* Pricing and CTA */}
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white transition-colors duration-300">
+                        {product.pricing}
+                      </span>
+                    </div>
+                    {product.name === "Retard Cloud" &&
+                    product.status === "Available" ? (
+                      <a
+                        href="https://cloud.retardlabs.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 rounded-lg font-medium transition-colors duration-200 bg-blue-600 hover:bg-blue-700 text-white flex items-center gap-2"
+                      >
+                        Get Started
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                      </a>
+                    ) : (
+                      <button
+                        onClick={
+                          product.status === "Beta" ? handleJoinBeta : undefined
+                        }
+                        className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
+                          product.status === "Available"
+                            ? "bg-blue-600 hover:bg-blue-700 text-white"
+                            : product.status === "Beta"
+                            ? "bg-yellow-600 hover:bg-yellow-700 text-white"
+                            : "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300 cursor-not-allowed"
+                        }`}
+                        disabled={
+                          !["Available", "Beta"].includes(product.status)
+                        }
+                      >
+                        {product.status === "Available"
+                          ? "Get Started"
+                          : product.status === "Beta"
+                          ? "Join Beta"
+                          : "Coming Soon"}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Beta Modal */}
-      {showBetaModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4 relative">
-            {/* Close button */}
-            <button
-              onClick={closeBetaModal}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          {/* Call to Action */}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Need a Custom Solution?
+            </h3>
+            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+              Can't find exactly what you're looking for? Our team specializes
+              in building custom technology solutions tailored to your specific
+              business requirements.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#contact"
+                className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+                Discuss Custom Solutions
+              </a>
+              <a
+                href="#services"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+              >
+                View Our Services
+              </a>
+            </div>
+          </div>
 
-            {/* Modal content */}
-            <div className="text-center">
-              <div className="mb-4">
-                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 dark:bg-yellow-900">
-                  <span className="text-4xl">😉</span>
-                </div>
+          {/* Technology Stack Carousel */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8 transition-colors duration-300">
+              Built with Modern Technologies
+            </h3>
+            <div className="relative overflow-hidden">
+              <div className="flex animate-scroll">
+                {[
+                  { name: "React", color: "text-blue-500" },
+                  { name: "Node.js", color: "text-green-500" },
+                  { name: "Docker", color: "text-blue-600" },
+                  { name: "Kubernetes", color: "text-purple-500" },
+                  { name: "AWS", color: "text-orange-500" },
+                  { name: "TypeScript", color: "text-blue-600" },
+                  { name: "Python", color: "text-yellow-500" },
+                  { name: ".NET", color: "text-purple-600" },
+                  { name: "Azure", color: "text-blue-400" },
+                  { name: "GCP", color: "text-red-500" },
+                  { name: "Proxmox", color: "text-orange-600" },
+                  // Duplicate for seamless loop
+                  { name: "React", color: "text-blue-500" },
+                  { name: "Node.js", color: "text-green-500" },
+                  { name: "Docker", color: "text-blue-600" },
+                  { name: "Kubernetes", color: "text-purple-500" },
+                  { name: "AWS", color: "text-orange-500" },
+                  { name: "TypeScript", color: "text-blue-600" },
+                  { name: "Python", color: "text-yellow-500" },
+                  { name: ".NET", color: "text-purple-600" },
+                  { name: "Azure", color: "text-blue-400" },
+                  { name: "GCP", color: "text-red-500" },
+                  { name: "Proxmox", color: "text-orange-600" },
+                ].map((tech, index) => (
+                  <div key={index} className="flex-shrink-0 mx-3">
+                    <div className="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 w-32 h-20 flex items-center justify-center">
+                      <span
+                        className={`text-lg font-semibold ${tech.color} whitespace-nowrap`}
+                      >
+                        {tech.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                Great things are coming your way!
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Thanks for your interest in our beta program. We'll keep you
-                updated on all the exciting features we're working on.
-              </p>
-              <button
-                onClick={closeBetaModal}
-                className="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200"
-              >
-                Awesome!
-              </button>
             </div>
           </div>
         </div>
-      )}
-    </section>
+
+        {/* Beta Modal */}
+        {showBetaModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4 relative">
+              {/* Close button */}
+              <button
+                onClick={closeBetaModal}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              {/* Modal content */}
+              <div className="text-center">
+                <div className="mb-4">
+                  <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-yellow-100 dark:bg-yellow-900">
+                    <span className="text-4xl">😉</span>
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  Great things are coming your way!
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Thanks for your interest in our beta program. We'll keep you
+                  updated on all the exciting features we're working on.
+                </p>
+                <button
+                  onClick={closeBetaModal}
+                  className="bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-200"
+                >
+                  Awesome!
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+    </>
   );
 };
 
