@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: retard-labs-website-service
+  labels:
+    app: retard-labs-website
+spec:
+  selector:
+    app: retard-labs-website
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  type: ClusterIP
